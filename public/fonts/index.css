@@ -19,4 +19,6 @@
   src: local('AppleSDGothicNeo'), url('AppleSDGothicNeoB.ttf') format('truetype');
 }
 
- 
+* {
+  font-family: 'AppleSDGothicNeo';
+}
