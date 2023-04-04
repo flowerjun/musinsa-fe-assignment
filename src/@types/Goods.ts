@@ -1,4 +1,4 @@
-export default interface Goods {
+export interface IGoods {
   goodsNo: number;
   goodsName: string;
   price: number;
@@ -11,4 +11,15 @@ export default interface Goods {
   saleRate: number;
   isSoldOut: boolean;
   isExclusive: boolean;
-};
+}
+
+export interface IGoodsImage {
+  imageUrl: string;
+  alt: string;
+  isSoldOut: boolean;
+}
+
+export interface IGoodsLabel {
+  label: string;
+  color: string;
+}
