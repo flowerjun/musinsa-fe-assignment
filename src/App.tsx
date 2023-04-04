@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import Goods from "./@types/Goods";
 import Header from "./components/Header";
 import ProductImage from "./components/ProductImage";
@@ -16,18 +17,17 @@ const Filter = styled.div`
   position: fixed;
   top: 50px;
   left: 0;
-  width: 200px;
+  width: 100%;
   background-color: #fff;
   z-index: 100;
-  padding: 10px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 10px 7px;
 `;
 
 const GoodsListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 70px;
-  margin-left: 210px;
+  justify-content: center;
+  margin-top: 105px;
 `;
 
 interface IFilter {
@@ -51,14 +51,14 @@ export default function App() {
 
   const fetchGoods = async () => {
     try {
-    if(page < MAX_PAGE){
-      const response = await fetch(`${BASE_URL}${page}.json`);
-      const goodsList = await response.json().then(res => res.data.list);
+      if(page < MAX_PAGE){
+        const response = await fetch(`${BASE_URL}${page}.json`);
+        const goodsList = await response.json().then(res => res.data.list);
 
-      setPage((prevPage) => prevPage + 1);
-      setGoodsList((prevGoodsList) => [...prevGoodsList, ...goodsList]);
-      setFilteredGoodsList(prev => [...prev, ...goodsList])
-    }
+        setPage(page + 1);
+        setGoodsList((prevGoodsList) => [...prevGoodsList, ...goodsList]);
+        setFilteredGoodsList((prevFilteredGoodsList) => [...prevFilteredGoodsList, ...goodsList]);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -67,24 +67,19 @@ export default function App() {
   const [loaderRef, isIntersecting] = useInfiniteScroll(fetchGoods);
 
   useEffect(() => {
-    // 필터링 로직 구현
     const filteredGoods = goodsList.filter((goods) => {
-      // 키워드 검색
       if (filter.searchKeyword && !goods.goodsName.includes(filter.searchKeyword)) {
         return false;
       }
 
-      // 단독 상품 필터
       if (filter.exclusive && !goods.isExclusive) {
         return false;
       }
 
-      // 세일 상품 필터
       if (filter.sale && !goods.isSale) {
         return false;
       }
 
-      // 품절 상품 필터
       if (!filter.soldOut && goods.isSoldOut) {
         return false;
       }
@@ -104,13 +99,12 @@ export default function App() {
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
+
     setFilter((prevState) => ({
       ...prevState,
       searchKeyword: value,
     }));
   };
-
-
 
   return (
     <AppWrapper>
