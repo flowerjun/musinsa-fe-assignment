@@ -16,6 +16,7 @@ export interface IGoods {
 export interface IGoodsImage {
   imageUrl: string;
   alt: string;
+  linkUrl: string;
   isSoldOut: boolean;
 }
 
@@ -23,3 +24,5 @@ export interface IGoodsLabel {
   label: string;
   color: string;
 }
+
+export type IGoodsInfo = Omit<IGoods, 'goodsNo' | 'imageUrl'>;
