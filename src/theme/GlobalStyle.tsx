@@ -1,4 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+
+import { color } from './theme';
 
 // ----------------------------------------------------------------------
 
@@ -9,7 +11,9 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     display: flex;
-    background-color: #FFF;
+    align-items: center;
+    justify-content: center;
+    background-color: ${color.white};
     margin: 0;
     padding: 0;
     width: 100%;
@@ -41,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: transparent;
   }
   input::placeholder {
-    color: #AAA;
+    color: ${color.oldGray6};
   }
 
   button {
