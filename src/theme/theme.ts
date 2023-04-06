@@ -5,6 +5,7 @@ export const color = {
   darkGray: '#777',
   dimWhite80: 'rgba(255, 255, 255, 0.8)',
   gray1: '#F9F9F9',
+  gray2: '#979797',
   gray4: '#EEE',
   gray5: '#CCC',
   oldGray3: '#F1F1F1',
