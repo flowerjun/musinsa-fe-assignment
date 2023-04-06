@@ -39,6 +39,6 @@ export default function FilterChip({ label, onChipClose }: IFilterChip) {
           viewBox={{ width: 14, height: 14, minX: 0, minY: 0 }}
         />
       </span>
-  </FilterChipWrapper>
+    </FilterChipWrapper>
   );
-}
+};
