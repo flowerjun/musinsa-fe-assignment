@@ -5,12 +5,88 @@
 
 ---
 
+### 배포 사이트
+
+
+---
+
+### 프로젝트 구성
+
+```
+  📦public
+  ┣ 📂favicon
+  ┃ ┣ 📜android-chrome-192x192.png
+  ┃ ┣ 📜android-chrome-512x512.png
+  ┃ ┣ 📜apple-touch-icon.png
+  ┃ ┣ 📜favicon-16x16.png
+  ┃ ┣ 📜favicon-32x32.png
+  ┃ ┗ 📜favicon.ico
+  ┣ 📂fonts
+  ┃ ┣ 📜AppleSDGothicNeoB.ttf
+  ┃ ┣ 📜AppleSDGothicNeoM.ttf
+  ┃ ┣ 📜AppleSDGothicNeoR.ttf
+  ┃ ┗ 📜index.css
+  ┣ 📂logo
+  ┣ 📜.DS_Store
+  ┣ 📜index.html
+  ┗ 📜manifest.json
+  📦src
+  ┣ 📂@types
+  ┃ ┣ 📜Autocomplete.ts
+  ┃ ┣ 📜Filter.ts
+  ┃ ┣ 📜Goods.ts
+  ┃ ┣ 📜InfiniteScroll.ts
+  ┃ ┗ 📜SVG.ts
+  ┣ 📂api
+  ┃ ┗ 📜fetchGoods.ts
+  ┣ 📂assets
+  ┃ ┣ 📜.DS_Store
+  ┃ ┣ 📜assets-path.tsx
+  ┃ ┣ 📜delete-icon.svg
+  ┃ ┣ 📜loading-icon.svg
+  ┃ ┣ 📜logo.svg
+  ┃ ┣ 📜not-found-icon.svg
+  ┃ ┣ 📜refresh-icon.svg
+  ┃ ┗ 📜search-icon.svg
+  ┣ 📂components
+  ┃ ┣ 📂goods
+  ┃ ┃ ┣ 📜GoodsImage.tsx
+  ┃ ┃ ┣ 📜GoodsInfo.tsx
+  ┃ ┃ ┗ 📜GoodsLabel.tsx
+  ┃ ┣ 📂header
+  ┃ ┃ ┣ 📜FilterButton.tsx
+  ┃ ┃ ┣ 📜FilterChip.tsx
+  ┃ ┃ ┣ 📜HeaderFilters.tsx
+  ┃ ┃ ┗ 📜HeaderTitle.tsx
+  ┃ ┣ 📜.DS_Store
+  ┃ ┗ 📜Autocomplete.tsx
+  ┣ 📂constants
+  ┃ ┗ 📜constants.ts
+  ┣ 📂hooks
+  ┃ ┗ 📜useInfinteScroll.ts
+  ┣ 📂theme
+  ┃ ┣ 📜GlobalStyle.tsx
+  ┃ ┗ 📜theme.ts
+  ┣ 📂util
+  ┃ ┗ 📜uuidv4.ts
+  ┣ 📜.DS_Store
+  ┣ 📜App.tsx
+  ┣ 📜index.tsx
+  ┗ 📜react-app-env.d.ts
+  📜.gitignore
+  📜package.json
+  📜README.md
+  📜tsconfig.json
+```
+
+---
+
 ### 개발 환경
 
 - React
   선정 이유
     1) 컴포넌트 기반 아키텍처를 사용하기에 코드의 재사용성을 높일 수 있습니다.
-    2) 가상 DOM 사용으로 변경된 부분만 다시 렌더링되도록 하므로, 불필요한 렌더링을 최소화하고 성능을 향상시킬 수 있습니다.
+    2) 가상 DOM 사용으로 변경된 부분만 다시 렌더링 되도록 하므로, 불필요한 렌더링을 최소화하고 성능을 향상할 수 있습니다.
 - TypeScript
   선정 이유
     1) 타입 검사를 통해 오류를 사전에 방지하므로 코드의 안정성을 높일 수 있습니다.
@@ -20,12 +96,12 @@
 
 ### 요구 사항
 
-- [ ] 1. 상품 리스트 헤더 컴포넌트
+- [x] 1. 상품 리스트 헤더 컴포넌트
   - [x] 1-1. 페이지 상단에 고정된 타이틀을 보여줍니다.
-  - [ ] 1-2. 페이지 상단에 고정된 필터를 보여줍니다. 사용자는 해당 필터의 버튼을 클릭하여 활성화/비활성화를 할 수 있으며, 활성화 시에는 해당 필터를 칩으로 보여줍니다.
-  - [ ] 1-3. 검색 버튼 클릭 시 키워드 입력창을 보여줍니다.
-  - [ ] 1-4. 검색어가 한 글자라도 포함된 상품이 있다면 검색 결과는 자동완성으로 보여집니다.  
-  - [ ] 1-5. 자동 완성된 키워드를 클릭하면, 해당 키워드는 필터 하단에 칩으로 보여집니다.
+  - [x] 1-2. 페이지 상단에 고정된 필터를 보여줍니다. 사용자는 해당 필터의 버튼을 클릭하여 활성화/비활성화를 할 수 있으며, 활성화 시에는 해당 필터를 칩으로 보여줍니다.
+  - [x] 1-3. 검색 버튼 클릭 시 키워드 입력창을 보여줍니다.
+  - [x] 1-4. 검색어가 한 글자라도 포함된 상품이 있다면 검색 결과는 자동완성으로 보여집니다.  
+  - [x] 1-5. 자동 완성된 키워드를 클릭하면, 해당 키워드는 필터 하단에 칩으로 보여집니다.
   - [x] 1-6. 필터는 아래와 같은 기능을 제공합니다.
     - [x] 카테고리별 필터링 (단독상품, 세일 상품)
     - [x] 품절 상품 표시 여부 설정 (품절 미포함/품절 포함)
@@ -59,6 +135,6 @@ yarn start
 ### NPM 사용하기
 
 ```
-npm i OR npm i --legacy-peer-deps
+npm i 또는 npm i --legacy-peer-deps
 npm start
 ```
