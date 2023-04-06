@@ -29,14 +29,16 @@ export default function FilterChip({ label, onChipClose }: IFilterChip) {
   return (
     <FilterChipWrapper onClick={onChipClose}>
       <span>{label}</span>
-      <SVGIcon
-        onClick={onChipClose}
-        icon={iconImagePath.deleteIcon}
-        fill={color.white}
-        size={14}
-        boxSize={{ width: 14, height: 14 }}
-        viewBox={{ width: 14, height: 14, minX: 0, minY: 0 }}
-      />
-    </FilterChipWrapper>
+      <span onClick={onChipClose}>
+        <SVGIcon
+          onClick={onChipClose}
+          icon={iconImagePath.deleteIcon}
+          fill={color.white}
+          size={14}
+          boxSize={{ width: 14, height: 14 }}
+          viewBox={{ width: 14, height: 14, minX: 0, minY: 0 }}
+        />
+      </span>
+  </FilterChipWrapper>
   );
 }
