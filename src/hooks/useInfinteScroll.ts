@@ -1,46 +1,39 @@
-import { useState, useRef, useEffect } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { InfiniteScrollOptions } from "src/@types/InfiniteScrollOptions";
+import { IntersectionOptions, UseInfiniteScrollReturnType } from 'src/@types/InfiniteScroll';
 
 // ----------------------------------------------------------------------
 
 const useInfiniteScroll = (
-  callback: () => void,
-  options: InfiniteScrollOptions = {}
-): [React.RefObject<HTMLDivElement>, boolean] => {
-  const { root = null, rootMargin = "0px", threshold = 1.0 } = options;
+  intersectRef: RefObject<Element>,
+  options: IntersectionOptions = {}
+): UseInfiniteScrollReturnType => {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const loaderRef = useRef<HTMLDivElement>(null);
+
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+    setIsIntersecting(target.isIntersecting);
+  }, []);
+
+  const observerOptions = useMemo(
+    () => ({
+      root: options.root || null,
+      rootMargin: options.rootMargin || '0px',
+      threshold: options.threshold || 0,
+    }),
+    [options.root, options.rootMargin, options.threshold]
+  );
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          callback();
-        }
-      },
-      {
-        root,
-        rootMargin,
-        threshold,
-      }
-    );
-
-    const loader = loaderRef.current;
-
-    if (loader) {
-      observer.observe(loader);
+    let observer: IntersectionObserver | null = null;
+    if (intersectRef.current) {
+      observer = new IntersectionObserver(handleObserver, observerOptions);
+      observer.observe(intersectRef.current);
     }
+    return () => observer?.disconnect();
+  }, [intersectRef.current, handleObserver, observerOptions]);
 
-    return () => {
-      if (loader) {
-        observer.unobserve(loader);
-      }
-    };
-  }, [callback, root, rootMargin, threshold]);
-
-  return [loaderRef, isIntersecting];
+  return { isIntersecting };
 };
 
 export default useInfiniteScroll;
