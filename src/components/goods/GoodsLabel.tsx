@@ -23,4 +23,4 @@ const Label = styled.span<{ color: string }>`
 
 export default function GoodsLabel({ label, color }: IGoodsLabel) {
   return <Label color={color}>{label}</Label>;
-}
+};

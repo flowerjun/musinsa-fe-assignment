@@ -25,4 +25,4 @@ export interface IGoodsLabel {
   color: string;
 }
 
-export type IGoodsInfo = Omit<IGoods, 'goodsNo' | 'imageUrl'>;
+export type IGoodsInfo = Omit<IGoods, 'goodsNo' | 'imageUrl' | 'isSoldOut'>;

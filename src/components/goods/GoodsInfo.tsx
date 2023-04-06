@@ -67,7 +67,6 @@ const GoodsPrice = styled.span<{ isSale: boolean }>`
 const GoodsSaleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  justify-content: space-between;
 `;
 
 const GoodsSalePrice = styled.span`
@@ -80,6 +79,7 @@ const GoodsSaleRate = styled.span`
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
+
   color: ${color.fRed1};
 `;
 
@@ -92,25 +92,27 @@ export default function GoodsInfo({
   normalPrice,
   isSale,
   saleRate,
-  isSoldOut,
   isExclusive,
 }: IGoodsInfo) {
   return (
     <GoodsInfoWrapper>
-      <GoodsBrandName href={brandLinkUrl} target="_blank" rel="noopener noreferrer">
+      <GoodsBrandName href={brandLinkUrl} target='_blank' rel='noopener noreferrer'>
         {brandName}
       </GoodsBrandName>
-      <a href={linkUrl} target="_blank" rel="noopener noreferrer">
+
+      <a href={linkUrl} target='_blank' rel='noopener noreferrer'>
         <GoodsName>{goodsName}</GoodsName>
         <GoodsPrice isSale={isSale}>{normalPrice.toLocaleString()}원</GoodsPrice>
+
         {isSale && (
           <GoodsSaleWrapper>
             <GoodsSalePrice>{Number(price).toLocaleString()}원</GoodsSalePrice>
             <GoodsSaleRate>{saleRate}%</GoodsSaleRate>
           </GoodsSaleWrapper>
         )}
-        {isExclusive && <GoodsLabel label="단독" color={color.green} />}
+
+        {isExclusive && <GoodsLabel label='단독' color={color.green} />}
       </a>
     </GoodsInfoWrapper>
   );
-}
+};

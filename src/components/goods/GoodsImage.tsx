@@ -49,15 +49,15 @@ export default function GoodsImage({ imageUrl, alt, linkUrl, isSoldOut }: IGoods
   };
 
   return (
-    <a href={linkUrl} target="_blank" rel="noopener noreferrer">
+    <a href={linkUrl} target='_blank' rel='noopener noreferrer'>
       <SoldOutTextWrapper isSoldOut={isSoldOut}>
         <SoldOutText>SOLD OUT</SoldOutText>
       </SoldOutTextWrapper>
       {imageError ? (
-        <Image src={PREVIEW_IMAGE_URL} alt="기본 이미지" />
+        <Image src={PREVIEW_IMAGE_URL} alt='기본 이미지' />
       ) : (
         <Image src={imageUrl} alt={alt} onError={handleImageError} />
       )}
     </a>
   );
-}
+};
